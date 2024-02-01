@@ -9,21 +9,22 @@ import <vector>;
 
 import CPakParser.Versions.PackageFileVersion;
 import CPakParser.Core.UObject;
+import CPakParser.Core.FName;
 
 export class FArchive
 {
 private:
-
 	bool ArIsFilterEditorOnly = false;
 	bool bUseUnversionedProperties = false;
 	FPackageFileVersion Version;
 	class FCustomVersionContainer* CustomVersions = nullptr; // gotta use a raw ptr cause of forward decl :/
 
 public:
-
 	virtual ~FArchive();
 
-	virtual void Serialize(void* V, int64_t Length) { }
+	virtual void Serialize(void* V, int64_t Length)
+	{
+	}
 
 	virtual FArchive& operator<<(UObjectPtr& Value)
 	{
@@ -40,12 +41,12 @@ public:
 		return *this << reinterpret_cast<UObjectPtr&>(Value);
 	}
 
-	virtual FArchive& operator<<(class FName& Value)
+	virtual FArchive& operator<<(FName& Value)
 	{
 		return *this;
 	}
 
-	template<class T1, class T2>
+	template <class T1, class T2>
 	friend FArchive& operator<<(FArchive& Ar, std::pair<T1, T2>& InPair)
 	{
 		Ar << InPair.first;
@@ -54,7 +55,7 @@ public:
 		return Ar;
 	}
 
-	template<typename T>
+	template <typename T>
 	friend FArchive& operator<<(FArchive& Ar, std::vector<T>& InArray)
 	{
 		if constexpr (sizeof(T) == 1 || TCanBulkSerialize<T>::Value)
@@ -79,7 +80,7 @@ public:
 		return Ar;
 	}
 
-	template<typename T>
+	template <typename T>
 	__forceinline FArchive& BulkSerializeArray(std::vector<T>& InArray)
 	{
 		int32_t ArrayNum;
@@ -94,7 +95,7 @@ public:
 		return BulkSerializeArray(InArray, ArrayNum);
 	}
 
-	template<typename T>
+	template <typename T>
 	FArchive& BulkSerializeArray(std::vector<T>& InArray, int32_t Count)
 	{
 		InArray.resize(Count);
@@ -104,8 +105,9 @@ public:
 		return *this;
 	}
 
-	template<typename T>
-	__forceinline void BulkSerialize(void* V) // the idea here is to save time by reducing the amount of serialization operations done, but a few conditions have to be met before using this. i would just avoid this for now
+	template <typename T>
+	__forceinline void BulkSerialize(void* V)
+	// the idea here is to save time by reducing the amount of serialization operations done, but a few conditions have to be met before using this. i would just avoid this for now
 	{
 		Serialize(V, sizeof(T));
 	}
@@ -123,7 +125,9 @@ public:
 	friend FArchive& operator<<(FArchive& Ar, int16_t& InNum);
 	friend FArchive& operator<<(FArchive& Ar, bool& InBool);
 
-	virtual void Seek(int64_t InPos) { }
+	virtual void Seek(int64_t InPos)
+	{
+	}
 
 	virtual void* Data() { return nullptr; }
 

@@ -10,7 +10,6 @@ export class FScriptDelegate
 	FName FunctionName;
 
 public:
-
 	friend class FArchive& operator<<(FArchive& Ar, FScriptDelegate& Delegate)
 	{
 		return Ar << Delegate.Object << Delegate.FunctionName;

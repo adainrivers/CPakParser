@@ -9,7 +9,6 @@ export class FName
 	std::string Val;
 
 public:
-
 	friend class FNameProperty;
 
 	FName() = default;
@@ -27,7 +26,7 @@ public:
 		Val = Other;
 	}
 
-	__forceinline void operator=(FName const& Other) 
+	__forceinline void operator=(FName const& Other)
 	{
 		Val = Other.Val;
 	}

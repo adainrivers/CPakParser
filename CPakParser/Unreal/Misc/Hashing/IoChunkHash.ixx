@@ -6,7 +6,6 @@ import <cstdint>;
 export class FIoChunkHash
 {
 public:
-
 	friend unsigned __int32 hash_value(const FIoChunkHash& InChunkHash)
 	{
 		uint32_t Result = 5381;
@@ -34,6 +33,5 @@ public:
 	}
 
 private:
-
 	unsigned __int8 Hash[32];
 };

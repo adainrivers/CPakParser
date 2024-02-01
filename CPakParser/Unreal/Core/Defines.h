@@ -25,10 +25,10 @@
 #define MAX_int16		((int16_t)	0x7fff)
 #define MAX_int32		((int32_t)	0x7fffffff)
 #define MAX_int64		((int64_t)	0x7fffffffffffffff)
-#define MIN_flt			(1.175494351e-38F)		
+#define MIN_flt			(1.175494351e-38F)
 #define MAX_flt			(3.402823466e+38F)
-#define MIN_dbl			(2.2250738585072014e-308)	
-#define MAX_dbl			(1.7976931348623158e+308)	
+#define MIN_dbl			(2.2250738585072014e-308)
+#define MAX_dbl			(1.7976931348623158e+308)
 
 #define UE_DOUBLE_SMALL_NUMBER			(1.e-8)
 #define UE_SMALL_NUMBER			(1.e-8f)
@@ -72,7 +72,7 @@ static __forceinline constexpr T Align(T Val, uint64_t Alignment)
 	return (T)(((uint64_t)Val + Alignment - 1) & ~(Alignment - 1));
 }
 
-template<typename Enum>
+template <typename Enum>
 constexpr bool EnumHasAnyFlags(Enum Flags, Enum Contains)
 {
 	return (((__underlying_type(Enum))Flags) & (__underlying_type(Enum))Contains) != 0;

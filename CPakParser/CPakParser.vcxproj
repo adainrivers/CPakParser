@@ -26,6 +26,7 @@
     <ClInclude Include="Unreal\Core\Reflection\Properties\PropertyTypes.h" />
     <ClInclude Include="Unreal\Files\IOStore\Toc\IoStoreToc.h" />
     <ClInclude Include="Unreal\Files\Paks\PakReader.h" />
+    <ClInclude Include="Unreal\Misc\Compression\External\LZ4\lz4.h" />
     <ClInclude Include="Unreal\Misc\Encryption\EncryptionKeyManager.h" />
     <ClInclude Include="Unreal\Misc\Hashing\Map.h" />
     <ClInclude Include="Unreal\Misc\Localization\Localization.h" />
@@ -98,6 +99,7 @@
     <ClCompile Include="Unreal\Files\Paks\PakInfo.cpp" />
     <ClCompile Include="Unreal\Files\Paks\PakInfo.ixx" />
     <ClCompile Include="Unreal\Files\SerializableFile.ixx" />
+    <ClCompile Include="Unreal\Misc\Compression\External\LZ4\lz4.c" />
     <ClCompile Include="Unreal\Misc\Compression\GlobalCompression.ixx" />
     <ClCompile Include="Unreal\Misc\Compression\Oodle.ixx" />
     <ClCompile Include="Unreal\Misc\Delegates\MulticastScriptDelegate.ixx" />

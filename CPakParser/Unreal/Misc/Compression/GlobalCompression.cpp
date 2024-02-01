@@ -1,5 +1,7 @@
 #include <string>
 
+#include "External/LZ4/lz4.h"
+
 import CPakParser.Compression;
 import CPakParser.Compression.Oodle;
 
@@ -44,7 +46,6 @@ int64_t FCompression::CompressMemoryBound(const std::string& FormatName, int32_t
 	}
 
 	return CompressionBound;
-	
 }
 
 void FCompression::DecompressMemory(const std::string& FormatName, void* UncompressedBuffer, int32_t UncompressedSize, const void* CompressedBuffer, int32_t CompressedSize)
@@ -59,7 +60,7 @@ void FCompression::DecompressMemory(const std::string& FormatName, void* Uncompr
 	}
 	else if (FormatName == "LZ4")
 	{
-		// TODO
+		LZ4_decompress_safe(static_cast<const char*>(CompressedBuffer), static_cast<char*>(UncompressedBuffer), CompressedSize, UncompressedSize);
 	}
 	else if (FormatName == "Oodle")
 	{
